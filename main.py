@@ -31,7 +31,9 @@ bg_channel = channel_file.readline()
 channel_file.close()
 
 async def Dips(ctx, bg): 
+    print('Someone dipped')
     global current_state_message
+    print("and if I haven't sent anything, I'm a piece of garbage")
     try:
         node = int(ctx.message.content[len(prefix_symbol) + len('disp') + 1:])
         if node > 50 or node < 37:
