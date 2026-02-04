@@ -149,16 +149,6 @@ restarted_war = False
 current_state_message = FillTemplate()
 restart_datetime = UpdateDate()
 
-#help
-@bot.command()
-async def help(context):
-    message = ''
-    for i in range(1, 4):
-        message += f"/dips{i} node_number - select node_number in {i}th bg\n"
-    for i in range(1, 4):
-        message += f"/nah{i} node_number - select node_number in {i}th bg\n"
-    await context.send(message, delete_after=12.13)
-
 #automatization of restarting war
 @bot.event
 async def on_ready():
@@ -253,6 +243,15 @@ async def nah2(ctx):
 async def nah3(ctx):
     if (ctx.channel.name == bg_channel):
         await GiveUpNode(ctx, 3)
+#help
+@bot.command()
+async def help(context):
+    message = ''
+    for i in range(1, 4):
+        message += f"/dips{i} node_number - select node_number in {i}th bg\n"
+    for i in range(1, 4):
+        message += f"/nah{i} node_number - select node_number in {i}th bg\n"
+    await context.send(message, delete_after=12.13)
 
 #initialization
 webserver.keep_alive()
