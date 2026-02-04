@@ -168,7 +168,7 @@ async def on_ready():
 async def restart_war():
     global restart_datetime
     while True:
-        time_now = datetime.datetime.utcnow()
+        time_now = datetime.datetime.now(datetime.UTC)
         seconds = (restart_datetime - time_now).total_seconds()
         await asyncio.sleep((restart_datetime - time_now).total_seconds())
         
