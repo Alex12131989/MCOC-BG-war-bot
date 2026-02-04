@@ -70,7 +70,7 @@ async def GiveUpNode(ctx, bg):
         await ctx.channel.send(f"Not a number (write it like this: \"{prefix_symbol}nah{bg} NUMBER\"", delete_after=5.0)
 
 def UpdateDate():
-    time_of_call = datetime.datetime.utcnow()
+    time_of_call = datetime.datetime.now(datetime.UTC)
    
     dates_file = open("dates.txt", "r")
     all_dates = dates_file.readlines()
@@ -254,4 +254,4 @@ async def nah3(ctx):
 
 #initialization
 webserver.keep_alive()
-bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+bot.run(token, log_handler=handler)
