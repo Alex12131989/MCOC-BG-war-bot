@@ -4,11 +4,12 @@ import asyncio
 import logging
 from dotenv import load_dotenv
 import os
+import webserver
 import datetime
 from math import floor 
 
 load_dotenv()
-token = os.getenv("DISCORD_TOKEN")
+token = os.environ['discordkey']
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 intents = discord.Intents.default()
 intents.message_content = True
@@ -29,7 +30,7 @@ channel_file = open("channel_name.txt", "r")
 bg_channel = channel_file.readline()
 channel_file.close()
 
-async def Dips(ctx, bg):
+async def Dips(ctx, bg): 
     global current_state_message
     try:
         node = int(ctx.message.content[len(prefix_symbol) + len('disp') + 1:])
@@ -38,7 +39,7 @@ async def Dips(ctx, bg):
         elif any(f"{node}" == taken_node for taken_node in taken_nodes[taken_nodes.index(f"{bg}."):taken_nodes.index(f"{bg +1}.")]):
             await ctx.channel.send("The node's already taken", delete_after=5.0)
         else:
-            current_state_message = UpdateList(bg, ctx.author.name, node, True)
+            current_state_message = UpdateList(bg, ctx.author.nick, node, True)
             await ctx.channel.purge()
             await ctx.channel.send(current_state_message)
     except ValueError:
@@ -56,10 +57,10 @@ async def GiveUpNode(ctx, bg):
             try:
                 first_delimiter = occupied_line.index(' ') + 1
                 occupier = occupied_line[first_delimiter:] 
-                if ctx.author.name != occupier:
+                if ctx.author.nick != occupier:
                     await ctx.channel.send("It's not your node", delete_after=5.0)
                 else:
-                    current_state_message = UpdateList(bg, ctx.author.name, node, False)
+                    current_state_message = UpdateList(bg, ctx.author.nick, node, False)
                     await ctx.channel.purge()
                     await ctx.channel.send(current_state_message)
             except ValueError:
@@ -252,4 +253,5 @@ async def nah3(ctx):
         await GiveUpNode(ctx, 3)
 
 #initialization
+webserver.keep_alive()
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
