@@ -27,7 +27,7 @@ taken_nodes = [line[:2] for line in taken_nodes_full]
 taken_nodes_file.close()
 
 channel_file = open("channel_name.txt", "r")
-bg_channel = channel_file.readline().replace('/n', '')
+bg_channel = channel_file.readline().replace('\n', '')
 channel_file.close()
 
 async def Dips(ctx, bg): 
