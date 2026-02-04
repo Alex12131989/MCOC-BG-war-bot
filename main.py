@@ -27,13 +27,11 @@ taken_nodes = [line[:2] for line in taken_nodes_full]
 taken_nodes_file.close()
 
 channel_file = open("channel_name.txt", "r")
-bg_channel = channel_file.readline()
+bg_channel = channel_file.readline().replace('/n', '')
 channel_file.close()
 
 async def Dips(ctx, bg): 
-    print('Someone dipped')
     global current_state_message
-    print("and if I haven't sent anything, I'm a piece of garbage")
     try:
         node = int(ctx.message.content[len(prefix_symbol) + len('disp') + 1:])
         if node > 50 or node < 37:
@@ -252,7 +250,6 @@ async def help(context):
     for i in range(1, 4):
         message += f"/nah{i} node_number - select node_number in {i}th bg\n"
     await context.send(message, delete_after=12.13)
-    await context.send(f"I should work only in {bg_channel}, and we are in {context.channel.name}")
 
 #initialization
 webserver.keep_alive()
