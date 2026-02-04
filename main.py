@@ -87,7 +87,7 @@ def UpdateDate():
             year = int(date[6:10])
             hour = int(date[11:13])
             minute = int(date[14:16])
-            dates.append(datetime.datetime(year=year, month=month, day=day, hour=hour, minute=minute))
+            dates.append(datetime.datetime(year=year, month=month, day=day, hour=hour, minute=minute, tzinfo=datetime.UTC))
         except ValueError:
             print("Couldn't convert dates (formatting issue) - won't auto update this time")
             return
