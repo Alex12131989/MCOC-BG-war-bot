@@ -252,6 +252,7 @@ async def help(context):
     for i in range(1, 4):
         message += f"/nah{i} node_number - select node_number in {i}th bg\n"
     await context.send(message, delete_after=12.13)
+    await context.send(f"I should work only in {bg_channel}, and we are in {context.channel.name}")
 
 #initialization
 webserver.keep_alive()
